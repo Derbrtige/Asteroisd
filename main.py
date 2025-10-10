@@ -29,6 +29,8 @@ def main():
     # creates & auto-registers into updatable/drawable via CircleShape.__init__
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    
+
     running = True
     while running:
         for event in pygame.event.get():
@@ -41,6 +43,11 @@ def main():
             if player.collides_with(asteroid):
                 print("Game over!")
                 running = False
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    children = asteroid.split()
+                    asteroid.kill()
+                    shot.kill()
 
         # draw everything that knows how to draw itself
         screen.fill((0, 0, 0))
